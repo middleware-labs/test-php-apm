@@ -155,11 +155,13 @@ final class MwTracker {
         // $this->collectMetrics();
 
         // Fetch system metrics periodically
-        while (true) {
+        $counter = 0;
+        while ($counter < 2) {
             $this->collectMetrics();
 
             // Wait for some time before fetching metrics again
             sleep(10);
+            $counter++;
         }
     }
 
