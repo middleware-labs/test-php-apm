@@ -1,0 +1,40 @@
+{
+  "name": "middleware/test-php-apm",
+  "description": "Agent APM for PHP",
+  "keywords": ["apm", "php", "agent", "middleware", "tracing", "opentelemetry", "otel", "instrumentation"],
+  "type": "library",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Middleware Developers",
+      "email": "dev@middleware.io",
+      "homepage": "https://middleware.io/",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.1",
+    "open-telemetry/sdk": "1.0.0beta5",
+    "symfony/http-client": "6.3.x-dev",
+    "guzzlehttp/promises": "^1.5@dev",
+    "php-http/message-factory": "^1.0@dev",
+    "nyholm/psr7": "^1.5",
+    "open-telemetry/api": "1.0.0beta5",
+    "open-telemetry/exporter-otlp": "dev-main",
+    "open-telemetry/opentelemetry-auto-psr15": "1.0.0beta5",
+    "psr/http-client": "1.0.x-dev",
+    "google/protobuf": "dev-master",
+    "php-http/httplug": "2.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Middleware\\AgentApmPhp\\": ""
+    }
+  },
+  "minimum-stability": "dev",
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
