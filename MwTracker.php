@@ -61,10 +61,6 @@ final class MwTracker {
             $this->host = getenv('MW_AGENT_SERVICE');
         }
 
-        putenv('OTEL_PHP_AUTOLOAD_ENABLED=true');
-        putenv('OTEL_METRICS_EXPORTER=console');
-
-
         $pid = getmypid();
         $this->projectName = $projectName ?: 'Project-' . $pid;
         $this->serviceName = $serviceName ?: 'Service-' . $pid;
@@ -324,7 +320,6 @@ final class MwTracker {
     private function collectMetrics(): void {
         $meter = $this->meter;
 
-        $pid = getmypid();
         $memoryUsage = memory_get_usage(true);
         $memoryPeakUsage = memory_get_peak_usage(true);
         $cpuUsage = sys_getloadavg()[0];
@@ -387,6 +382,7 @@ final class MwTracker {
             // Supporting on Linux
 
             // $cpuCore = shell_exec('nproc');
+            $pid = getmypid();
             $processCpuPercentage = shell_exec("ps -p " . $pid . " -o %cpu | tail -n 1");
             $processMemoryPercentage = shell_exec("ps -p " . $pid . " -o %mem | tail -n 1");
             $processStartTime = $_SERVER['REQUEST_TIME'] * 1000;
